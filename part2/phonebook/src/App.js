@@ -1,13 +1,7 @@
 import { useState } from 'react'
-
-const Contact = ( props ) => {
-  console.log("Numbers called:", props.person.name)
-  return (
-    <li>
-      {props.person.name} {props.person.phone}
-    </li>
-  )
-}
+import Persons from './components/Persons'
+import PersonForm from './components/PersonForm'
+import Filter from './components/Filter'
 
 
 const App = () => {
@@ -23,7 +17,6 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault()
-    console.log('button clicked', event.target)
 
     let isDuplicate = false
     persons.forEach(person => {
@@ -37,7 +30,6 @@ const App = () => {
         name: newName,
         phone: newNumber,
       }
-      console.log(personObject)
       setPersons(persons.concat(personObject))
       setNewName('')
       setNewNumber('')
@@ -45,24 +37,16 @@ const App = () => {
   }
 
 
-
   const handleNameChange = (event) => {
-    console.log("handleNameChange called")
-    console.log(event.target.value)
     setNewName(event.target.value)
   }
 
   const handleNumberChange = (event) => {
-    console.log("handleNumberChange called")
-    console.log(event.target.value)
     setNewNumber(event.target.value)
   }
 
   const handleFilter = (event) => {
-    console.log("handleFilter called")
-    console.log(event.target.value)
     const personsToShow = persons.filter(person => person.name.toLowerCase().includes(event.target.value.toLowerCase())===true)
-    console.log("person to show:", personsToShow)
     setFiltered(personsToShow)
   }
 
@@ -70,36 +54,13 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        filter shown with: <input onChange={handleFilter}/>
-      </div>
-      <div>
-        result:
-      </div>
-      <ul>
-        {filtered.map(person => {
-          console.log("Filtered called:", person)
-          return <Contact key={person.name} person={person} />
-        })}
-      </ul>
+      <Filter handleFilter={handleFilter} filtered={filtered} />
+
       <h2>Add a new</h2>
-      <form onSubmit={addPerson}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange}/>
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumberChange}/></div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <PersonForm addPerson={addPerson} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />
+
       <h2>Numbers</h2>
-      <ul>
-        {persons.map(person => {
-          console.log("Map called:", person)
-          return <Contact key={person.name} person={person} />
-        })}
-      </ul>       
+      <Persons persons={persons}/>
     </div>
   )
 }
