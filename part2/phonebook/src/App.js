@@ -1,19 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
+import personsService from './services/persons'
 
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', phone: '040-123456' },
-    { name: 'Ada Lovelace', phone: '39-44-5323523'},
-    { name: 'Dan Abramov', phone: '12-43-234345'},
-    { name: 'Mary Poppendieck', phone: '39-23-6423122'}
-  ]) 
+  const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filtered, setFiltered] = useState([])
+
+  const hook = () => {
+    console.log('effect')
+    personsService
+      .getAll()
+      .then(initialPersons => {
+        setPersons(initialPersons.data)
+        console.log(initialPersons.data)
+      })
+  }
+  console.log('render', persons.length, 'notes')
+  useEffect(hook, [])
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -28,11 +37,19 @@ const App = () => {
     } else {
       const personObject = {
         name: newName,
-        phone: newNumber,
+        number: newNumber,
       }
-      setPersons(persons.concat(personObject))
-      setNewName('')
-      setNewNumber('')
+      //setPersons(persons.concat(personObject))
+      //setNewName('')
+      //setNewNumber('')
+
+      personsService
+        .create(personObject)
+        .then(returnedPerson => {
+          setPersons(persons.concat(returnedPerson))
+          setNewName('')
+          setNewNumber('')
+        })
     }
   }
 
