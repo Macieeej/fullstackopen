@@ -1,11 +1,6 @@
 {
   "persons": [
     {
-      "name": "Arto Hellas",
-      "number": "040-123456",
-      "id": 1
-    },
-    {
       "name": "Ada Lovelace",
       "number": "39-44-5323523",
       "id": 2
@@ -16,34 +11,9 @@
       "id": 3
     },
     {
-      "name": "Mary Poppendieck",
-      "number": "39-23-6423122",
-      "id": 4
-    },
-    {
       "name": "Maciej B",
       "phone": "22323",
       "id": 5
-    },
-    {
-      "name": "Mac",
-      "phone": "121313",
-      "id": 6
-    },
-    {
-      "name": "mdmdmd",
-      "phone": "12121212",
-      "id": 7
-    },
-    {
-      "name": "dfsd",
-      "phone": "1212",
-      "id": 8
-    },
-    {
-      "name": "sddf",
-      "phone": "1212",
-      "id": 9
     },
     {
       "name": "dassad",
@@ -51,39 +21,9 @@
       "id": 10
     },
     {
-      "name": "sadasdasd",
-      "phone": "1212",
-      "id": 11
-    },
-    {
-      "name": "sdasda",
-      "phone": "121212",
-      "id": 12
-    },
-    {
-      "name": "sdasdaddas",
-      "phone": "12",
-      "id": 13
-    },
-    {
-      "name": "sadsadasdasdasd",
-      "phone": "12",
-      "id": 14
-    },
-    {
       "name": "sadsad",
       "phone": "122121",
       "id": 15
-    },
-    {
-      "name": "qwdwqd",
-      "phone": "1221",
-      "id": 16
-    },
-    {
-      "name": "sadsaffs",
-      "phone": "12121",
-      "id": 17
     },
     {
       "name": "sd da",
@@ -91,19 +31,9 @@
       "id": 18
     },
     {
-      "name": "Nowa Osoba",
-      "phone": "676767667",
-      "id": 19
-    },
-    {
       "name": "dasdsas",
       "phone": "12-1344",
       "id": 20
-    },
-    {
-      "name": "ewfewf",
-      "number": "12",
-      "id": 21
     },
     {
       "name": "asd",
@@ -114,6 +44,26 @@
       "name": "ssad",
       "number": "1212",
       "id": 23
+    },
+    {
+      "name": "asasd",
+      "number": "121212",
+      "id": 24
+    },
+    {
+      "name": "dssd",
+      "number": "1212",
+      "id": 33
+    },
+    {
+      "name": "sad",
+      "number": "13123",
+      "id": 35
+    },
+    {
+      "name": "dssdf",
+      "number": "1212132",
+      "id": 36
     }
   ]
 }

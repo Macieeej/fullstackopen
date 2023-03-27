@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
@@ -28,20 +27,32 @@ const App = () => {
     event.preventDefault()
 
     let isDuplicate = false
+    let localId = 0
     persons.forEach(person => {
-      if (person.name === newName) isDuplicate = true;
+      if (person.name === newName) {
+        isDuplicate = true;
+        localId = person.id;
+        console.log("ID:", localId)
+      }
     })
     
     if (isDuplicate) {
-      alert(`${newName} is already added to phonebook`)
+      if (window.confirm(`${newName} is already addedt to phonebook, replace the old number with a new one?`)) {
+        const personObject = {
+          name: newName,
+          number: newNumber,
+        }
+
+        personsService
+          .update(localId, personObject)
+        window.location.reload()
+      }
+      
     } else {
       const personObject = {
         name: newName,
         number: newNumber,
       }
-      //setPersons(persons.concat(personObject))
-      //setNewName('')
-      //setNewNumber('')
 
       personsService
         .create(personObject)
@@ -50,6 +61,7 @@ const App = () => {
           setNewName('')
           setNewNumber('')
         })
+        window.location.reload()
     }
   }
 
