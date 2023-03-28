@@ -12,7 +12,7 @@
     },
     {
       "name": "Maciej B",
-      "phone": "22323",
+      "number": "65655656",
       "id": 5
     },
     {
@@ -27,43 +27,13 @@
     },
     {
       "name": "sd da",
-      "phone": "121333",
+      "number": "1221321",
       "id": 18
     },
     {
       "name": "dasdsas",
       "phone": "12-1344",
       "id": 20
-    },
-    {
-      "name": "asd",
-      "number": "1212",
-      "id": 22
-    },
-    {
-      "name": "ssad",
-      "number": "1212",
-      "id": 23
-    },
-    {
-      "name": "asasd",
-      "number": "121212",
-      "id": 24
-    },
-    {
-      "name": "dssd",
-      "number": "1212",
-      "id": 33
-    },
-    {
-      "name": "sad",
-      "number": "13123",
-      "id": 35
-    },
-    {
-      "name": "dssdf",
-      "number": "1212132",
-      "id": 36
     }
   ]
 }

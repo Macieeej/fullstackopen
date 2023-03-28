@@ -3,13 +3,16 @@ import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
 import personsService from './services/persons'
-
+import Notification from './components/Notification'
+import Error from './components/Error'
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filtered, setFiltered] = useState([])
+  const [confMessage, setConfMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   const hook = () => {
     console.log('effect')
@@ -45,7 +48,16 @@ const App = () => {
 
         personsService
           .update(localId, personObject)
-        window.location.reload()
+          .then(() => {
+            setConfMessage(`${personObject.name}'s number changed`)
+            setNewName('')
+            setNewNumber('')
+            setTimeout(() => {
+              setConfMessage(null)
+              window.location.reload()
+            }, 3000)
+            })
+            
       }
       
     } else {
@@ -60,8 +72,12 @@ const App = () => {
           setPersons(persons.concat(returnedPerson))
           setNewName('')
           setNewNumber('')
-        })
-        window.location.reload()
+          setConfMessage(`Added ${personObject.name}`)
+          setTimeout(() => {
+            setConfMessage(null)
+            window.location.reload()
+          }, 3000)
+         })
     }
   }
 
@@ -73,6 +89,7 @@ const App = () => {
   const handleNumberChange = (event) => {
     setNewNumber(event.target.value)
   }
+  
 
   const handleFilter = (event) => {
     const personsToShow = persons.filter(person => person.name.toLowerCase().includes(event.target.value.toLowerCase())===true)
@@ -83,13 +100,15 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={confMessage} />
+      <Error message={errorMessage}/>
       <Filter handleFilter={handleFilter} filtered={filtered} />
 
       <h2>Add a new</h2>
       <PersonForm addPerson={addPerson} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />
 
       <h2>Numbers</h2>
-      <Persons persons={persons}/>
+      <Persons persons={persons}  setErrorMessage={setErrorMessage} setConfMessage={setConfMessage} />
     </div>
   )
 }
